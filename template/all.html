@@ -8,27 +8,18 @@
   <thead>
     <tr>
       <th class="col-md"> </th>
+      <th class="col-md"> </th>
       <th class="col-md-10">Title</th>
       <th class="col-md">Delete</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
+    <tr ng-repeat="(key, data) in datasets">
       <td class="col-md">
-        <input type="checkbox" name="" value="">
+        <input type="checkbox" name="" value="" ng-model="data.check">
       </td>
-      <td class="col-md">Buy a MacbookPro</td>
-      <td class="col-md">
-        <button type="button" class="btn btn-default btn-xs">
-          <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-        </button>
-      </td>
-    </tr>
-    <tr>
-      <td class="col-md">
-        <input type="checkbox" name="" value="">
-      </td>
-      <td class="col-md">{{ test }}</td>
+      <td class="col-md">{{ key }}</td>
+      <td class="col-md">{{ data.title }}</td>
       <td class="col-md">
         <button type="button" class="btn btn-default btn-xs">
           <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
