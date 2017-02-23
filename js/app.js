@@ -1,13 +1,10 @@
-angular.module('ToDoList', [
-                              'ToDoList.Services',
-                              'ToDoList.Controllers',
-                              'ui.router'
-                           ])
+angular.module('ToDoList', ['ToDoList.Services',
+                            'ToDoList.Controllers',
+                            'ui.router'])
 
 .config(function($stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise('/all');
-
+  // ========== Routing Setup ==========
   $stateProvider
     .state('all', {
         url: '/all',
@@ -24,10 +21,15 @@ angular.module('ToDoList', [
     })
     .state('create', {
         url: '/create',
-        templateUrl: 'template/create.html'
+        templateUrl: 'template/create.html',
+        controller: 'CreateCtrl'
     });
+  $urlRouterProvider.otherwise('/all');
 
 });
 
+// ========== External controllers ==========
 angular.module('ToDoList.Controllers',[]);
+
+// ========== External services ==========
 angular.module('ToDoList.Services',[]);
