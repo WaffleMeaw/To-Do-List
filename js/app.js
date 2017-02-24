@@ -2,6 +2,11 @@ angular.module('ToDoList', ['ToDoList.Services',
                             'ToDoList.Controllers',
                             'ui.router'])
 
+.run(function ($state, $rootScope) {
+  // ========== For switch button on navbar ==========
+  $rootScope.$state = $state;
+})
+
 .config(function($stateProvider, $urlRouterProvider) {
 
   // ========== Routing Setup ==========
