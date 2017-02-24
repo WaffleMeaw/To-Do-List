@@ -8,35 +8,49 @@ app.service('DBservice', function(){
   };
 
   this.PostData = function(taskID, titleNew, descriptionNew, checkNew) {
+    var currentDate = new Date();
+    console.log(currentDate);
+    currentDate = currentDate.toLocaleString();
+
+    if(titleNew == null || titleNew == ''){
+      titleNew = '-';
+    }else if(descriptionNew == null || descriptionNew == ''){
+      descriptionNew = '-';
+    }else if(checkNew == null || checkNew == ''){
+      checkNew = false ;
+    }else{}
+
     return firebase.database().ref('tasks/' + taskID).set({
       title: titleNew,
       description: descriptionNew,
+      timestamp: currentDate,
       check: checkNew
     });
   };
 
   this.UpdateData = function(taskID, titleUpdate, descriptionUpdate, checkUpdate) {
-      var data = {
-        title: titleUpdate,
-        description: descriptionUpdate,
-        check: checkUpdate
-      };
-      var updates = {};
-      updates['/tasks/' + taskID] = data;
 
-      return firebase.database().ref().update(updates);
+    if(titleUpdate == null || titleUpdate == ''){
+      titleUpdate = '';
+    }else if(descriptionUpdate == null || descriptionUpdate == ''){
+      descriptionUpdate = '-';
+    }else if(checkUpdate == null || checkUpdate == ''){
+      checkUpdate = false;
+    }else{}
+
+    var data = {
+      title: titleUpdate,
+      description: descriptionUpdate,
+      check: checkUpdate
+    };
+    var updates = {};
+    updates['/tasks/' + taskID] = data;
+
+    return firebase.database().ref().update(updates);
   };
 
-  this.DeleteData = function(taskID, titleDelete, descriptionDelete, checkDelete) {
+  this.DeleteData = function(taskID) {
       console.log("in service : " + taskID);
-      var data = {
-        title: titleDelete,
-        description: descriptionDelete,
-        check: checkDelete
-      };
-      var deletes = {};
-      deletes['/tasks/' + taskID] = data;
-
       return firebase.database().ref('/tasks/' + taskID).remove();
   };
 
