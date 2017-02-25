@@ -128,3 +128,7 @@
   text-decoration: line-through;
   color: grey;
 }
+
+.alert-title {
+  margin-top: 3px;
+}
