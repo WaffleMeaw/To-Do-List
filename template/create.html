@@ -4,22 +4,46 @@
   </div>
   <div class="panel-body">
 
-    <form class="form-horizontal">
-      <div class="form-group form-group-lg">
+    <form class="form-horizontal" name="createForm">
+      <div class="form-group" ng-init="titleValid = false">
         <label class="col-sm-2 control-label" for="formGroupInputLarge">Title</label>
         <div class="col-sm-10">
-          <input class="form-control" type="text" id="formGroupInputLarge" placeholder="What will you do?" ng-model="titleNew">
+          <input class="form-control" name="titleInput" type="text" id="formGroupInputLarge" placeholder="What will you do?" ng-model="titleNew" ng-required="titleValid">
+          <div class="alert alert-danger alert-title" role="alert" ng-if="!createForm.titleInput.$valid"><b>The title field is required !</b></div>
         </div>
       </div>
+
       <div class="form-group">
         <label class="col-sm-2 control-label" for="formGroupInputSmall">Description</label>
         <div class="col-sm-10">
           <textarea class="form-control" rows="5" id="formGroupInputSmall" placeholder="Description of what you do ..." ng-model="descriptionNew"></textarea>
         </div>
       </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="formGroupInputSmall">Date and Time</label>
+        <div class="col-sm-4">
+          <div class="dropdown">
+            <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#">
+              <div class="input-group"><input type="text" class="form-control" data-ng-model="dateTimeNew" placeholder="When do you start?"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+              </div>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <datetimepicker data-ng-model="dateTimeNew" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"/>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       <div class="form-group">
         <div class="col-sm-2 col-sm-offset-2">
-          <button type="button" class="btn btn-default" ng-click="CreateTodo()">Save</button>
+          <button type="button" class="btn btn-primary btn-block" ng-click="CreateTodo()">Save</button>
+        </div>
+        <div class="col-sm-2">
+          <button type="button" class="btn btn-default btn-block" ui-sref="all">Cancel</button>
+        </div>
+        <div class="col-sm-1">
+
         </div>
       </div>
     </form>
