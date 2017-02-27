@@ -33,16 +33,21 @@ angular.module('ToDoList', ['ToDoList.Services',
         controller: 'CreateCtrl'
     })
     .state('entry', {
-        url: '/entry',
+        url: '/:id',
         templateUrl: 'template/entry.html',
-        controller: 'CreateCtrl'
+        controller: 'EntryCtrl'
+    })
+    .state('edit', {
+        url: '/edit/:id',
+        templateUrl: 'template/edit.html',
+        controller: 'EntryCtrl'
     });
   $urlRouterProvider.otherwise('/all');
 
-});
+})
 
 // ========== External controllers ==========
-angular.module('ToDoList.Controllers',[]);
+angular.module('ToDoList.Controllers',[])
 
 // ========== External services ==========
-angular.module('ToDoList.Services',[]);
+angular.module('ToDoList.Services',[])
