@@ -3,3 +3,45 @@
   <li role="presentation" class="active"><a ui-sref="todo">To do</a></li>
   <li role="presentation"><a ui-sref="completed">Completed</a></li>
 </ul>
+
+<table class="table table-condensed table-hover">
+  <thead>
+    <tr>
+      <th class="col-xs-2 col-md-1" id="chkRow"></th>
+      <th class="col-xs-8 col-md-10">Title</th>
+      <th class="col-xs-2 col-md-1" id="btnRowDel">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr data-ng-repeat="data in datasets | orderBy: '-timestamp'" ng-hide="data.check==true">
+      <td class="col-xs-2 col-md-1" id="chkRow">
+        <input type="checkbox" name="" value="{{$index}}" ng-model="data.check" ng-change="Checked(data)">
+      </td>
+      <td class="col-xs-8 col-md-10" ui-sref="entry({id: data.taskID})">
+        <p id="pTitle" for="{{$index}}" class="check-{{data.check}}">{{ data.title }}</p>
+      </td>
+      <td class="col-xs-2 col-md-1" id="btnRowDel">
+        <button type="button" class="btn btn-default btn-xs btnDelete" ng-click="preDeleteData(data)" data-toggle="modal" data-target=".bs-example-modal-sm">
+        <span class="glyphicon glyphicon-minus"></span></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Confirm delete dialog -->
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Delete Comfirm</h3>
+        </div>
+        <div class="panel-body">
+          <h5>Are you sure you want to delete ?</h5>
+          <button type="button" class="btn btn-danger" name="button" data-dismiss="modal" ng-click="confirmDel()">Yes</button>
+          <button type="button" class="btn btn-default" name="button" data-dismiss="modal" ng-click="cancelDel()">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
