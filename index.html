@@ -43,7 +43,7 @@
       <div class="container-fluid">
         <!-- Navbar for mobile display -->
         <div class="navbar-header">
-          <div class="navbar-toggle">
+          <div class="navbar-toggle" ng-hide="$state.includes('edit')">
             <button type="button" class="btn btn-default btn-sm btnCreateMobile" ui-sref="create" ng-show="!($state.includes('create') || $state.includes('entry'))">
               <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
               New
@@ -58,7 +58,7 @@
 
         <!-- Navbar for desktop display -->
         <div class="collapse navbar-collapse">
-          <div class="nav navbar-nav navbar-right">
+          <div class="nav navbar-nav navbar-right" ng-hide="$state.includes('edit')">
             <button type="button" class="btn btn-default btn-sm btnCreate" ui-sref="create" ng-show="!($state.includes('create') || $state.includes('entry'))">
               <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
               New
