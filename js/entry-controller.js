@@ -2,19 +2,21 @@ angular.module('ToDoList')
 
 .controller('EntryCtrl', function(DBservice, $scope, $state, $stateParams){
 
+  // ========== GET DATA FROM DATABASE =========================================
   $scope.dataEntry = [];
   function GetOneData(){
     DBservice.GetOneData($stateParams.id)
       .then(function(respons){
           $scope.dataEntry = respons.val();
           $scope.$apply();
-          // console.log($scope.dataEntry);
       }, function(error){
           // console.log(error);
       });
   };
   GetOneData();
 
+
+  // ========== UPDATE DATA TO DATABASE ========================================
   $scope.updateEntry = function(){
 
     if($scope.dataEntry.title == null || $scope.dataEntry.title == ''){
@@ -30,7 +32,7 @@ angular.module('ToDoList')
 
     var dateTime = $scope.dataEntry.dateTime;
     if(dateTime == null){
-      dateTime = '';
+      dateTime = '-';
     }else{
       dateTime = dateTime.toLocaleString();
     };
@@ -42,7 +44,6 @@ angular.module('ToDoList')
                          $scope.dataEntry.timestamp,
                          $scope.dataEntry.check)
       .then(function(respons){
-          // console.log(respons);
           $scope.dataEntry = [];
           GetOneData();
           $state.go('entry', {id: $stateParams.id});

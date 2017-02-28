@@ -19,7 +19,6 @@ angular.module('ToDoList')
 
   // ========== UPDATE CHECK, UNCHECK TO DATABASE ==============================
   $scope.Checked = function(data){
-
     DBservice.UpdateData(data.taskID,
                          data.title,
                          data.description,
@@ -27,7 +26,6 @@ angular.module('ToDoList')
                          data.timestamp,
                          data.check)
       .then(function(respons){
-          // console.log(respons);
           $scope.datasets = [];
           GetAllData();
       }, function(error){
@@ -45,7 +43,6 @@ angular.module('ToDoList')
     if($scope.dataDel != null){
       DBservice.DeleteData($scope.dataDel.taskID)
         .then(function(respons){
-            // console.log(respons);
             $scope.datasets = [];
             GetAllData();
         }, function(error){

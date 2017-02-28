@@ -6,7 +6,6 @@ angular.module('ToDoList')
   $scope.descriptionNew = null;
   $scope.dateTimeNew = null;
   $scope.checkNew = false;
-
   $scope.titleValid = false;
 
   // ========== CREATE DATA TO DATABASE ========================================
@@ -18,7 +17,6 @@ angular.module('ToDoList')
     }else{
       $scope.titleValid = false;
     };
-
     if($scope.titleValid == false){
       $scope.taskID = Math.random().toString(36).substring(7);
 
@@ -27,11 +25,10 @@ angular.module('ToDoList')
 
       var dateTime = $scope.dateTimeNew;
       if(dateTime == null){
-        dateTime = '';
+        dateTime = '-';
       }else{
         dateTime = dateTime.toLocaleString();
       };
-
       if($scope.titleNew == null || $scope.titleNew == ''){
         $scope.titleNew = '-';
       }
@@ -50,7 +47,6 @@ angular.module('ToDoList')
                          currentDate,
                          $scope.checkNew)
         .then(function(respons){
-            // console.log(respons);
             $state.go('all');
         }, function(error){
             // console.log(error);

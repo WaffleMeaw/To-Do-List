@@ -9,7 +9,7 @@ angular.module('ToDoList.Services')
   };
 
 
-  // ========== GET ONE DATA FROM DATABASE =====================================
+  // ========== GET DATA BY ID FROM DATABASE ===================================
   this.GetOneData = function(taskID){
     return firebase.database().ref('tasks/' + taskID).once('value');
   };
@@ -50,7 +50,7 @@ angular.module('ToDoList.Services')
   };
 
 
-  // ========== POST DATA TO DATABASE ==========================================
+  // ========== DELETE DATA IN DATABASE ==========================================
   this.DeleteData = function(taskID){
 
       return firebase.database().ref('/tasks/' + taskID).remove();
